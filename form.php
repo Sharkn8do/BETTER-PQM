@@ -17,9 +17,32 @@ while($row = $result->fetch_assoc()) {
   <title>Submit a 3D Print Request</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="verimail.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
   <script type="text/javascript" src="department.js"></script>
+  
+   <script>
+  var array = ["2013-03-14","2016-11-30","2013-03-16"]
+  $( function() {
+  function getNext7WorkingDays(){
+  var d = new Date();
+    var day = d.getDay();
+    if(day>=0 && day<=3) return 6;
+    else if(day!=6) return 7;
+    else return 8;
+    }
+    
+    $( "#datepicker" ).datepicker({
+    
+    constrainInput: true,
+    minDate: "+1D",
+    dateFormat: "yy-mm-dd"
+    });
+  } );
+  
+  </script>
 </head>
 <body>
   <form>
@@ -110,7 +133,9 @@ Affiliation:
 		counter--;
 	});
 	}
-	</script>
+</script>
+
+Date Needed: <input id="datepicker" name="date" readonly="true">
   
  </form>
 </body>
