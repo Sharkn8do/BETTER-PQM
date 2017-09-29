@@ -16,6 +16,7 @@ while($row = $result->fetch_assoc()) {
 <head>
   <title>Submit a 3D Print Request</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="verimail.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
   <script type="text/javascript" src="department.js"></script>
 </head>
@@ -24,10 +25,17 @@ while($row = $result->fetch_assoc()) {
     Your Name
     </br>
   <input type="text" width="100px">
+  
   </br>
   Email Address
   </br>
-  <input type="text" width="100px">
+  <input type="text" width="100px" id="email"> 
+<script>
+    $("input#email").verimail({
+    messageElement: "#email-status"
+});
+  </script>
+<span id="email-status"></span>
 </br>
   Phone Number
 </br>
