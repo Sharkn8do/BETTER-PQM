@@ -35,9 +35,8 @@ while($row = $result->fetch_assoc()) {
     }
     
     $( "#datepicker" ).datepicker({
-    
     constrainInput: true,
-    minDate: "+1D",
+    minDate: "+2D",
     dateFormat: "yy-mm-dd"
     });
   } );
