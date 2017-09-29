@@ -16,6 +16,7 @@ while($row = $result->fetch_assoc()) {
 <head>
   <title>Submit a 3D Print Request</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="verimail.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
   <script type="text/javascript" src="department.js"></script>
@@ -71,6 +72,45 @@ Affiliation:
  </br>
 <input type="text">
 </div>
+
+<div>
+  <button class="addRow">Add Another File</button>
+	
+	<button class="deleteRow">Delete Last File</button>
+  
+  
+  <h1>
+  Upload your 3D Files
+  </h1>
+	
+	<table class="3Dmodels">
+		
+		<tr>
+			<td>
+				<input  type="text" name="3Dfile" />
+			</td>
+			
+		</tr>
+	</table>
+</div>
+
+<script>
+	var counter = 2;
+	if (counter >= 2) {
+	jQuery('button.addRow').click(function(event){
+		event.preventDefault();
+		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' +
+			counter + '"/></td></tr>');
+		jQuery('table.3Dmodels').append(newRow);
+    counter++;
+	});
+	jQuery('button.deleteRow').click(function(event){
+		event.preventDefault();
+		$('.3Dmodels tr:last').remove();
+		counter--;
+	});
+	}
+	</script>
   
  </form>
 </body>
