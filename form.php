@@ -15,8 +15,8 @@ while($row = $result->fetch_assoc()) {
 <!DOCTYPE html>
 <head>
   <title>Submit a 3D Print Request</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
   <form>
@@ -30,9 +30,9 @@ while($row = $result->fetch_assoc()) {
 </br>
   Phone Number
 </br>
-<input id="phone" width="100px">
+<input class="phone" width="100px">
 
   
   
-  </form>
+ </form>
 </body>
