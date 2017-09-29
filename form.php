@@ -109,7 +109,7 @@ Affiliation:
 		
 		<tr>
 			<td>
-				<input  type="text" name="3Dfile" />
+				<input  type="text" name="3Dfile0" />
 			</td>
 			
 		</tr>
@@ -117,8 +117,8 @@ Affiliation:
 </div>
 
 <script>
-	var counter = 2;
-	if (counter >= 2) {
+	var counter = 1;
+	if (counter >= 1) {
 	jQuery('button.addRow').click(function(event){
 		event.preventDefault();
 		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' +
@@ -129,7 +129,9 @@ Affiliation:
 	jQuery('button.deleteRow').click(function(event){
 		event.preventDefault();
 		$('.3Dmodels tr:last').remove();
+    if (counter>0) {
 		counter--;
+    }
 	});
 	}
 </script>
