@@ -1,5 +1,5 @@
 <?php
-require_once "dbconnect.php";
+require_once "functions/dbconnect.php";
 
 $query = "SELECT * FROM prints";
 echo $query;
