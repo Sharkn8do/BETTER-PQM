@@ -127,7 +127,7 @@ Affiliation:
         
       <td>
          <input type="radio" name="size" id="original">
-        Use Default Size in File
+        Use Default Size in File:
         
         <input type="radio" name="size" id="custom">
         Specify Dimensions
