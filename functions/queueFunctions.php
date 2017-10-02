@@ -1,5 +1,4 @@
 <?php
-
 //determine based on status what records to output
 function drawRecords($con,$status) {
 	//echo $status;
@@ -19,7 +18,6 @@ function drawRecords($con,$status) {
 		$filename = $row['filename'];
 		//function to write out the status in readable format
 		$stat = writeStatus($row['status']);
-
 		//echo out one record at a time, diving between them
 		echo "_______________________________________________________";
 		echo"<div id='request_$id'>
@@ -29,8 +27,6 @@ function drawRecords($con,$status) {
 			</div>";
 	}
 }
-
-
 //take the raw status from the 
 function writeStatus($raw_status) {
 	switch($raw_status) {

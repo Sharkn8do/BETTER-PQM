@@ -1,16 +1,11 @@
 <?php
 require_once "functions/dbconnect.php";
-
 $query = "SELECT * FROM prints";
 echo $query;
-
 $result = $conn->query($query);
-
 while($row = $result->fetch_assoc()) {
          echo $row['first_name'];
      }
-
-
 ?>
 <!DOCTYPE html>
 <head>
