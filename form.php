@@ -131,25 +131,9 @@ Affiliation:
 				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;">
 			</td>
 						<td>
-							<script>
-						$.getJSON("colorEcho.php",function(data){
-
-    $.each(data,function(index,item) 
-    {
-			var colorID = JSON.stringify(item.ColorID);
-			var colorID = colorID.replace(/\"/g, "");
-			var ColorDescription = JSON.stringify(item.ColorDescription);
-			var ColorDescription = ColorDescription.replace(/\"/g, "");
-			
-      items+="<option value='"+colorID+"'>"+ColorDescription+"</option>";
-    });
-    $("#color0").html(items); 
-		alert(items);
-							});
-					</script>
 			Color:
-				<select name="color0">
-					
+				<select id="color0">
+					<?php include "colorEcho.php";?>
 				</select>
 			</td>
 			
