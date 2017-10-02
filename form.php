@@ -115,10 +115,6 @@ Affiliation:
 			<td>
 				<input  type="text" name="3Dfile0" />
 			</td>
-      
-      <td>
-        <input type="number" step="1" name="numberOfPrints0"
-      </td>
         
       <td>
          <input type="radio" name="size" id="original">
@@ -128,11 +124,27 @@ Affiliation:
         Specify Dimensions
         <div id='customDimensions' style='display:none'>Hello</div>
         
-        
-       
-        
-        
       </td>
+			
+			<td>
+			Number of Prints
+				<input type="number" step="1" min="1" style="width:50px; text-align:center;">
+			</td>
+			
+			<td>
+			Color:
+				<select>
+					<?php
+					$query = "SELECT ColorDescription,ColorID FROM Colors ORDER BY ColorGroup";
+						echo $query;
+						$result = $conn->query($query);
+						while($row = $result->fetch_assoc()) {
+										 echo "<option value='" . $row['ColorID'] . "'>" . $row['ColorDescription'] . "</option>";
+								 }
+					?>
+				</select>
+			</td>
+			
 		</tr>
 	</table>
 </div>
