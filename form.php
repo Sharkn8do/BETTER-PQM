@@ -117,10 +117,10 @@ Affiliation:
 			</td>
         
       <td>
-         <input type="radio" name="size" id="original">
+         <input type="radio" name="original0" id="original">
         Use Default Size in File:
         
-        <input type="radio" name="size" id="custom">
+        <input type="radio" name="custom0" id="custom">
         Specify Dimensions
         <div id='customDimensions' style='display:none'>Hello</div>
         
@@ -128,12 +128,12 @@ Affiliation:
 			
 			<td>
 			Number of Prints
-				<input type="number" step="1" min="1" style="width:50px; text-align:center;">
+				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;">
 			</td>
 			
 			<td>
 			Color:
-				<select>
+				<select name="color0">
 					<?php
 					$query = "SELECT ColorDescription,ColorID FROM Colors ORDER BY ColorGroup";
 						echo $query;
@@ -154,8 +154,14 @@ Affiliation:
 	if (counter >= 1) {
 	jQuery('button.addRow').click(function(event){
 		event.preventDefault();
-		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' +
-			counter + '"/></td></tr>');
+		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' + 
+				counter + '"/></td><td><input type="radio" name="original' + 
+				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
+				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
+				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
+				counter + '<select name="color' + 
+				counter + '"<?php $query = "SELECT ColorDescription,ColorID FROM Colors ORDER BY ColorGroup";$result = $conn->query($query);while($row = $result->fetch_assoc()) { echo "<option value=&quot" . $row['ColorID'] . "&quot" . $row['ColorDescription'] . "</option>"; } ?> 
+	</select></tr>');
 		jQuery('table.3Dmodels').append(newRow);
     counter++;
 	});
