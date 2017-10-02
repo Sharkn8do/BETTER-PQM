@@ -134,14 +134,7 @@ Affiliation:
 			<td>
 			Color:
 				<select name="color0">
-					<?php
-					$query = "SELECT ColorDescription,ColorID FROM Colors ORDER BY ColorGroup";
-						echo $query;
-						$result = $conn->query($query);
-						while($row = $result->fetch_assoc()) {
-										 echo "<option value='" . $row['ColorID'] . "'>" . $row['ColorDescription'] . "</option>";
-								 }
-					?>
+					<?php include "colorEcho.php";?>
 				</select>
 			</td>
 			
@@ -160,8 +153,8 @@ Affiliation:
 				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
 				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
 				counter + '<select name="color' + 
-				counter + '"<?php $query = "SELECT ColorDescription,ColorID FROM Colors ORDER BY ColorGroup";$result = $conn->query($query);while($row = $result->fetch_assoc()) { echo "<option value=&quot" . $row['ColorID'] . "&quot" . $row['ColorDescription'] . "</option>"; } ?> 
-	</select></tr>');
+				counter + '">'
+				+ counter + '</select></tr>');
 		jQuery('table.3Dmodels').append(newRow);
     counter++;
 	});

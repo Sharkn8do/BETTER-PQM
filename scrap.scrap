@@ -1,0 +1,33 @@
+	var counter = 1;
+	if (counter >= 1) {
+	jQuery('button.addRow').click(function(event){
+		event.preventDefault();
+		$(function(){
+      var items="";
+      $.getJSON("colorEcho.php",function(data){
+        $.each(data,function(index,item) 
+        {
+          items+="<option value='"+item.ColorID+"'>"+item.ColorDescription+"</option>";
+					});
+
+		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' + 
+				counter + '"/></td><td><input type="radio" name="original' + 
+				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
+				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
+				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
+				counter + '<select name="color' + 
+				counter + '">'
+				+ items + '</select></tr>');
+		jQuery('table.3Dmodels').append(newRow);
+    counter++;
+				      });
+    });
+	});
+	jQuery('button.deleteRow').click(function(event){
+		event.preventDefault();
+		$('.3Dmodels tr:last').remove();
+    if (counter>0) {
+		counter--;
+    }
+	});
+	}
