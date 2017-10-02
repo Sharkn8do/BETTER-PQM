@@ -1,5 +1,5 @@
 <?php
-require_once 'functions/dbConnect.php';
+require_once 'functions/dbconnect.php';
 require 'functions/functions.php';
 /*Default sorting method, pull up all items in the queue*/
 if(empty($_GET['sort'])){$status = '';}
