@@ -131,9 +131,25 @@ Affiliation:
 				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;">
 			</td>
 						<td>
+							<script>
+						$.getJSON("colorEcho.php",function(data){
+
+    $.each(data,function(index,item) 
+    {
+			var colorID = JSON.stringify(item.ColorID);
+			var colorID = colorID.replace(/\"/g, "");
+			var ColorDescription = JSON.stringify(item.ColorDescription);
+			var ColorDescription = ColorDescription.replace(/\"/g, "");
+			
+      items+="<option value='"+colorID+"'>"+ColorDescription+"</option>";
+    });
+    $("#color0").html(items); 
+		alert(items);
+							});
+					</script>
 			Color:
 				<select name="color0">
-					<?php include "colorEcho.php";?>
+					
 				</select>
 			</td>
 			
@@ -146,21 +162,36 @@ Affiliation:
 	if (counter >= 1) {
 	jQuery('button.addRow').click(function(event){
 		event.preventDefault();
-		var jsonData = {};
-		$.getJSON('colorEcho.php',function(colorData){
-    alert(JSON.stringify(colorData));
-	});
+		
+		$(function(){
+
+  var items="";
+  $.getJSON("colorEncode.php",function(data){
+
+    $.each(data,function(index,item) 
+    {
+			var colorID = JSON.stringify(item.ColorID);
+			var colorID = colorID.replace(/\"/g, "");
+			var ColorDescription = JSON.stringify(item.ColorDescription);
+			var ColorDescription = ColorDescription.replace(/\"/g, "");
+			
+      items+="<option value='"+colorID+"'>"+ColorDescription+"</option>";
+    });
+
 		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' + 
 				counter + '"/></td><td><input type="radio" name="original' + 
 				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
 				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
 				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
-				counter + '<select name="color' + 
-				counter + '">'
-				+ jsonData + '</select></tr>');
+				counter + '<select id="color' + 
+				counter + '">' +
+				items + '</select></tr>');
 		jQuery('table.3Dmodels').append(newRow);
     counter++;
 	});
+			  });
+
+});
 	jQuery('button.deleteRow').click(function(event){
 		event.preventDefault();
 		$('.3Dmodels tr:last').remove();
