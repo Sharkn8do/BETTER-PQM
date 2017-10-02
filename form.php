@@ -130,8 +130,7 @@ Affiliation:
 			Number of Prints
 				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;">
 			</td>
-			
-			<td>
+						<td>
 			Color:
 				<select name="color0">
 					<?php include "colorEcho.php";?>
@@ -147,6 +146,10 @@ Affiliation:
 	if (counter >= 1) {
 	jQuery('button.addRow').click(function(event){
 		event.preventDefault();
+		var jsonData = {};
+		$.getJSON('colorEcho.php',function(colorData){
+    alert(JSON.stringify(colorData));
+	});
 		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' + 
 				counter + '"/></td><td><input type="radio" name="original' + 
 				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
@@ -154,7 +157,7 @@ Affiliation:
 				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
 				counter + '<select name="color' + 
 				counter + '">'
-				+ counter + '</select></tr>');
+				+ jsonData + '</select></tr>');
 		jQuery('table.3Dmodels').append(newRow);
     counter++;
 	});
