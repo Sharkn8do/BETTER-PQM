@@ -111,7 +111,24 @@ Affiliation:
 			<td>
 				<input  type="text" name="3Dfile0" />
 			</td>
-			
+      
+      <td>
+        <input type="number" step="1" name="numberOfPrints0"
+      </td>
+        
+      <td>
+         <input type="radio" name="size" id="original">
+        Use Default Size in File
+        
+        <input type="radio" name="size" id="custom">
+        Specify Dimensions
+        <div id='customDimensions' style='display:none'>Hello</div>
+        
+        
+       
+        
+        
+      </td>
 		</tr>
 	</table>
 </div>
