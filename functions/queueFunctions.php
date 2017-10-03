@@ -1,6 +1,62 @@
 <?php
-//determine based on status what records to output
-function drawRecords($con,$status) {
+function drawAllRecords($con) {
+	//query selecting ALL records that have been Authorized
+	$q = "SELECT * FROM `pqm`.`Requests` WHERE `Authorized` = '1'";
+	$result = mysqli_query($con,$q);
+	//break down into their own functions for easier testing
+		while($row = mysqli_fetch_assoc($result)) {
+			//print details are stored in an array
+				//see getPrintProperties() for indexing
+			$printDet = getPrintProperties($con,$row['RequestID']);
+			$request_id = $printDet[0];
+			//store more variables as necessary
+			echo $request_id;
+		}
+}
+
+//get the print properties for displaying
+/*
+	Indexing Guide:
+	0 - RequestID
+	1 - UserID
+	2 - Date Requested
+	3 - Date Needed (still have to check if it's empty)
+	4 - Contact Preference
+*/
+function getPrintProperties($con,$printID) {
+	$q = "SELECT * FROM `pqm`.`Requests` WHERE `RequestID` = '$printID' AND `Authorized` = '1'";
+	$result = mysqli_query($con,$q);
+	while($row = mysqli_fetch_assoc($result)) {
+		$request_id = $row['RequestID'];
+		$user_id = $row['UserID'];
+		$reqDate = $row['DateRequested'];
+		$dateNeed = $row['DateNeeded'];
+		$contactPref = $row['ContactPreferenceID'];
+	}
+	$printProp = array($request_id, $user_id, $reqDate, $dateNeed, $contactPref);
+	return $printProp;
+}
+
+//get the user's details for displaying
+function getUserDetails($con,$userID) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* OLD DO NOT USE
+function oldDrawRecords($con,$status) {
 	//echo $status;
 	
 	//if status is empty, return all elements
@@ -48,4 +104,7 @@ function writeStatus($raw_status) {
 	}
 	return $status;
 }
+*/
+
+
 ?>
