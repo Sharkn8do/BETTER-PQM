@@ -23,12 +23,6 @@ require_once "functions/dbconnect.php";
       }
    }
 
-$query = "SELECT * FROM prints";
-echo $query;
-$result = $conn->query($query);
-while($row = $result->fetch_assoc()) {
-         echo $row['first_name'];
-     }
 ?>
 <!DOCTYPE html>
 <head>
@@ -63,7 +57,7 @@ while($row = $result->fetch_assoc()) {
 </head>
 <body>
   <form id="newRequest" action="" method="POST" enctype="multipart/form-data">
-	<div>
+	<div id="aboutYou">
 		<h2>
 			About You
 		</h2>
@@ -226,6 +220,8 @@ Filament Color:
 	If print settings for 3D model need to include other instructions, please specify here:
 		<br>
 		<textarea id="comments" maxlength="1024" rows="4" cols="50"></textarea>
+	<br>
+	<em>Unless specified otherwise above, all 3D print requests will be printed at MakerBot's standard print settings <br> (10% infill, 200 micron/0.20mm resolution/layer height, 2 shells, with raft).</em>
 </div>
 	
 </br>

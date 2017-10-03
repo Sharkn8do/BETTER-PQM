@@ -39,3 +39,27 @@
   text-align:center; 
   width:150px;
 }
+#aboutYou {
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+  border-radius:15px;
+  margin:1%;
+  padding:1%;
+  width:300px;
+}
+h2 {
+  font-size: 18px;
+  text-align:center;
+}
+#email-status {
+  position:absolute;
+  background-color:white;
+  border-style:dashed;
+  border-width:1px;
+  border-color:black;
+  height:60px;
+  width:100px;
+  padding:5px;
+  margin-left: 25px;
+}
