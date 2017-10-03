@@ -37,15 +37,6 @@ while($row = $result->fetch_assoc()) {
   } );
   
   </script>
-  <script>
-          $('#newRequest').change(function() {
-    if (!$("input[name='custom']:checked").val()) {
-        $('#customDimensions').show();
-    } else {
-        $('#customDimensions').hide();
-    }
-});
-      </script>
 </head>
 <body>
   <form id="newRequest">
@@ -117,10 +108,10 @@ Affiliation:
 			</td>
         
       <td>
-         <input type="radio" name="original0" id="original">
+         <input type="radio" name="custom" id="original">
         Use Default Size in File:
         
-        <input type="radio" name="custom0" id="custom">
+        <input type="radio" name="custom" id="custom">
         Specify Dimensions
         <div id='customDimensions' style='display:none'>Hello</div>
         
@@ -128,7 +119,7 @@ Affiliation:
 			
 			<td>
 			Number of Prints
-				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;">
+				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;" value="1">
 			</td>
 						<td>
 			Color:
@@ -166,7 +157,7 @@ Affiliation:
 				counter + '"/></td><td><input type="radio" name="original' + 
 				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
 				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
-				counter + '" step="1" min="1" style="width:50px; text-align:center;"></td><td>Color:<select name="color' + 
+				counter + '" step="1" min="1" style="width:50px; text-align:center;" value="1"></td><td>Color:<select name="color' + 
 				counter + '<select id="color' + 
 				counter + '">' +
 				items + '</select></tr>');
@@ -189,4 +180,13 @@ Affiliation:
 Date Needed: <input id="datepicker" name="date" readonly="true">
   
  </form>
+  <script>
+          $('#newRequest').change(function() {
+    if ($("input[id='custom']:checked").val()) {
+        $('#customDimensions').show();
+    } else {
+        $('#customDimensions').hide();
+    }
+});
+      </script>
 </body>
