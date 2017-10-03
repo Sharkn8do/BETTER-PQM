@@ -108,10 +108,10 @@ Affiliation:
 			</td>
         
       <td>
-         <input type="radio" name="custom" id="original">
+         <input type="radio" name="custom" id="original0">
         Use Default Size in File:
         
-        <input type="radio" name="custom" id="custom">
+        <input type="radio" name="custom" id="custom0">
         Specify Dimensions
         <div id='customDimensions' style='display:none'>Hello</div>
         
@@ -182,7 +182,7 @@ Date Needed: <input id="datepicker" name="date" readonly="true">
  </form>
   <script>
           $('#newRequest').change(function() {
-    if ($("input[id='custom']:checked").val()) {
+    if ($("input[id='custom0']:checked").val()) {
         $('#customDimensions').show();
     } else {
         $('#customDimensions').hide();
