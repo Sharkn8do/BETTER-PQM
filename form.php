@@ -99,7 +99,7 @@ Affiliation:
 
 </div>
 
-<div>
+<div id="yourPrint">
 	<h2>
 		Your Print
 	</h2>
@@ -176,7 +176,7 @@ Filament Color:
 </select>
 </div>
 
-<div>
+<div id="additionalNotes">
 	<h2>
 		Additional Notes:
 	</h2>

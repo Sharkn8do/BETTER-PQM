@@ -39,7 +39,7 @@
   text-align:center; 
   width:150px;
 }
-#aboutYou {
+#aboutYou, #yourPrint, #additionalNotes {
   border-width:2px;
   border-style:solid;
   border-color:black;
@@ -58,8 +58,12 @@ h2 {
   border-style:dashed;
   border-width:1px;
   border-color:black;
-  height:60px;
-  width:100px;
+  border-radius:10px;
+  height:auto;
+  width:125px;
   padding:5px;
   margin-left: 25px;
+}
+#additionalNotes {
+  width:500px;
 }
