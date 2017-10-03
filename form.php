@@ -1,5 +1,28 @@
 <?php
 require_once "functions/dbconnect.php";
+
+   if(isset($_FILES['3DFile'])){
+      $errors= array();
+      $file_name = $_FILES['3DFile']['name'];
+      $file_size =$_FILES['3DFile']['size'];
+      $file_tmp =$_FILES['3DFile']['tmp_name'];
+      $file_type=$_FILES['3DFile']['type'];
+      $file_ext=strtolower(end(explode('.',$_FILES['3DFile']['name'])));
+      
+      $extensions= array("stl");
+      
+      if(in_array($file_ext,$extensions)=== false){
+         $errors = "Extension not allowed, please choose a STL file.";
+      }
+      
+      if(empty($errors)==true){
+         move_uploaded_file($file_tmp,"/pqm-beta/RequestFiles/".$file_name);
+         echo "Success";
+      }else{
+         print_r($errors);
+      }
+   }
+
 $query = "SELECT * FROM prints";
 echo $query;
 $result = $conn->query($query);
@@ -16,7 +39,6 @@ while($row = $result->fetch_assoc()) {
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="verimail.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
-  <script type="text/javascript" src="department.js"></script>
   
    <script>
   var array = ["2013-03-14","2016-11-30","2013-03-16"]
@@ -39,7 +61,11 @@ while($row = $result->fetch_assoc()) {
   </script>
 </head>
 <body>
-  <form id="newRequest">
+  <form id="newRequest" action="" method="POST" enctype="multipart/form-data">
+	<div>
+		<h2>
+			About You
+		</h2>
     Your Name
     </br>
   <input type="text" width="100px">
@@ -62,125 +88,164 @@ while($row = $result->fetch_assoc()) {
 Affiliation:
 </br>
 <select id="affiliation">
-  <optgroup id="school">
-  <option class="school">
-      NAU Student
-  </option>
-  <option class="school">
-      NAU Graduate Student
-  </option>
-  <option class="school">
-      NAU Faculty/Staff
-  </option>
-  <option class="school">
-      CCC Student
-  </option>
-  <option class="school">
-      CCC Faculty/Staff
-  </option>
-</optgroup>
-  <option>
-      Other/Visitor
-  </option>
+<?php
+	$query = "SELECT * FROM Affiliation";
+	$result = $conn->query($query);
+	while($row = $result->fetch_assoc()) {
+         echo "<option id='" . $row['AffiliationID'] . "'>" . $row['AffiliationDescription'] . "</option>";
+     }
+	?>
 </select>  
 
-<div id="department">
+</br>
   Department/College:
  </br>
 <input type="text">
+
 </div>
 
 <div>
-  <button class="addRow">Add Another File</button>
+	<h2>
+		Your Print
+	</h2>
 	
-	<button class="deleteRow">Delete Last File</button>
-  
-  
-  <h1>
-  Upload your 3D Files
-  </h1>
-	
-	<table class="3Dmodels">
-		
-		<tr>
-			<td>
-				<input  type="text" name="3Dfile0" />
-			</td>
-        
-      <td>
-         <input type="radio" name="custom" id="original0">
+Date Needed: 
+	</br>
+	<input id="datepicker" name="date" readonly="true">
+</br>
+File Upload:
+</br>
+<input type="file" name="3DFile" accept=".stl"/>
+</br>
+Number of Prints:
+</br>
+<input type="number" step="1" min="1" value="1">
+</br>
+Object Size:
+</br>
+  <input type="radio" name="custom" id="original0">
         Use Default Size in File:
         
         <input type="radio" name="custom" id="custom0">
         Specify Dimensions
-        <div id='customDimensions' style='display:none'>Hello</div>
-        
-      </td>
-			
-			<td>
-			Number of Prints
-				<input type="number" name="quantity0" step="1" min="1" style="width:50px; text-align:center;" value="1">
-			</td>
-						<td>
-			Color:
-				<select id="color0">
-					<?php include "colorEcho.php";?>
-				</select>
-			</td>
-			
-		</tr>
-	</table>
+        <div id='customDimensions' style='display:none'>
+					<table id="customSize">
+						<tr>
+							<th>
+								Height:
+							</th>
+							
+							<th>
+								Width:
+							</th>
+							
+							<th>
+								Length:
+							</th>
+						</tr>
+						
+						<tr>
+							<td>
+								<input type="number" id="fileHeight" step="0.01" max="457.00" min="1.00" style="text-align:center; width:100%;" placeholder="Height (mm)">
+							</td>
+							
+							<td>
+								<input type="number" id="fileWidth" step="0.01" max="305.00" min="1.00" style="text-align:center; width:100%;" placeholder="Width (mm)">
+							</td>
+							
+							<td>
+								<input type="number" id="fileLength" step="0.01" max="300.00" min="1.00" style="text-align:center; width:100%;" placeholder="Length (mm)">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								Max Height is 457 mm
+							</td>
+							
+							<td>
+								Max Width is 305 mm
+							</td>
+							
+							<td>
+								Max Length is 300 mm
+							</td>
+						</tr>
+					</table>
+				</div>
+</br>
+Filament Color:
+</br>
+<select>
+	<?php include "colorEcho.php"?>
+</select>
 </div>
 
-<script>
-	var counter = 1;
-	if (counter >= 1) {
-	jQuery('button.addRow').click(function(event){
-		event.preventDefault();
-		
-		$(function(){
-
-  var items="";
-  $.getJSON("colorEncode.php",function(data){
-
-    $.each(data,function(index,item) 
-    {
-			var colorID = JSON.stringify(item.ColorID);
-			var colorID = colorID.replace(/\"/g, "");
-			var ColorDescription = JSON.stringify(item.ColorDescription);
-			var ColorDescription = ColorDescription.replace(/\"/g, "");
-			
-      items+="<option value='"+colorID+"'>"+ColorDescription+"</option>";
-    });
-
-		var newRow = jQuery('<tr><td><input type="text" name="3Dfile' + 
-				counter + '"/></td><td><input type="radio" name="original' + 
-				counter + '" id="original"> Use Default Size in File: <input type="radio" name="custom' + 
-				counter + '" id="custom"> Specify Dimensions <div id="customDimensions" style="display:none">Hello</div></td><td>Number of Prints<input type="number" name="quantity' +
-				counter + '" step="1" min="1" style="width:50px; text-align:center;" value="1"></td><td>Color:<select name="color' + 
-				counter + '<select id="color' + 
-				counter + '">' +
-				items + '</select></tr>');
-		jQuery('table.3Dmodels').append(newRow);
-    counter++;
-	});
-			  });
-
-});
-	jQuery('button.deleteRow').click(function(event){
-		event.preventDefault();
-		$('.3Dmodels tr:last').remove();
-    if (counter>0) {
-		counter--;
-    }
-	});
-	}
-</script>
-
-Date Needed: <input id="datepicker" name="date" readonly="true">
-  
+<div>
+	<h2>
+		Additional Notes:
+	</h2>
+	Custom Instructions? <input type="checkbox" id="instructions">
+<div id="CustomInstructions" style="display:none;">
+	<table id="customizedInstructions">
+						<tr>
+							<th>
+								Layer Height:
+							</th>
+							
+							<th>
+								Shells:
+							</th>
+							
+							<th>
+								Infill:
+							</th>
+						</tr>
+						
+						<tr>
+							<td>
+								<input type="number" id="layerHeight" step="0.1" max="0.3" min="0.1" style="text-align:center; width:100%;" placeholder="Layer Height (mm)">
+							</td>
+							
+							<td>
+								<input type="number" id="shells" step="1" max="30" min="1.00" style="text-align:center; width:100%;" placeholder="Number of Shells">
+							</td>
+							
+							<td>
+								<input type="number" id="infill" step="10" max="100" min="10" style="text-align:center; width:100%;" placeholder="Infill (%)">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<span>Layer Height is how coarse or fine the vertical axis,<br> .1 being the fines and .3 being the coarsest.</span>
+							</td>
+							
+							<td>
+								<span>Shells are the exterior wall of a print, the higher the shells, the thicker the wall.</span>
+							</td>
+							
+							<td>
+								<span>Infill is how much of the print inbetween the exterior walls is filled in.<br>100% is the highest, 10% is the lowest.</span>
+							</td>
+						</tr>
+					</table>
+</div>
+</br>
+  <input type="submit"/>
  </form>
-  <script>
+
+
+<script>
+	$('#instructions').change(function(){
+  if($(this).prop("checked")) {
+    $('#CustomInstructions').show();
+  } else {
+    $('#CustomInstructions').hide();
+  }
+});
+</script>
+<script>
           $('#newRequest').change(function() {
     if ($("input[id='custom0']:checked").val()) {
         $('#customDimensions').show();
@@ -189,4 +254,5 @@ Date Needed: <input id="datepicker" name="date" readonly="true">
     }
 });
       </script>
+
 </body>
