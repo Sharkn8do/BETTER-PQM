@@ -8,9 +8,24 @@ function drawAllRecords($con) {
 			//print details are stored in an array
 				//see getPrintProperties() for indexing
 			$printDet = getPrintProperties($con,$row['RequestID']);
+			
+			//print details stored in variables
+			//REQUIRED
 			$request_id = $printDet[0];
-			//store more variables as necessary
-			echo $request_id;
+			$user_id = $printDet[1];
+			$reqDate = $printDet[2];
+			$contactPref = $printDet[4];
+			
+			//OPTIONAL
+				//if date needed is not empty, assign it to the variable.
+					//else, don't bother.  won't need to print it
+			if(!empty($printDet[3])){$dateNeeded = $printDet[3];}
+			
+			//getUserDetails to get contact details
+			//getPrintFormDetails to get quantity, color, customsize,custominstructions,forclass,originaldesign,clineuse
+			
+			//possibly split the custom instructions, size, color, and class into own functions to grab
+			
 		}
 }
 
@@ -22,6 +37,10 @@ function drawAllRecords($con) {
 	2 - Date Requested
 	3 - Date Needed (still have to check if it's empty)
 	4 - Contact Preference
+	
+	TODO:
+		change to associative array 
+		https://www.w3schools.com/PhP/php_arrays.asp
 */
 function getPrintProperties($con,$printID) {
 	$q = "SELECT * FROM `pqm`.`Requests` WHERE `RequestID` = '$printID' AND `Authorized` = '1'";
@@ -42,6 +61,15 @@ function getUserDetails($con,$userID) {
 
 }
 
+//get users print details entered via form
+function getPrintFormDetails($con,$printID) {
+
+}
+
+//gets print details that staff enter
+function getPrintStaffDetails($con,$printID) {
+
+}
 
 
 
