@@ -208,7 +208,7 @@ Filament Color:
 						
 						<tr>
 							<td>
-								<input class="instructionsInput" type="number" id="layerHeight" step="0.1" max="0.3" min="0.1" " placeholder="Layer Height (mm)">
+								<input class="instructionsInput" type="number" id="layerHeight" step="0.1" max="0.3" min="0.1" placeholder="Layer Height (mm)">
 							</td>
 							
 							<td>
@@ -220,7 +220,14 @@ Filament Color:
 							</td>
 						</tr>
 					</table>
+		
 </div>
+	<br>
+	If print settings for 3D model need to include other instructions, please specify here:
+		<br>
+		<textarea id="comments" maxlength="1024" rows="4" cols="50"></textarea>
+</div>
+	
 </br>
   <input type="submit"/>
  </form>
