@@ -16,7 +16,7 @@ require_once "functions/dbconnect.php";
       }
       
       if(empty($errors)==true){
-         move_uploaded_file($file_tmp,"/pqm-beta/RequestFiles/".$file_name);
+         move_uploaded_file($file_tmp,"RequestFiles/".$file_name);
          echo "Success";
       }else{
          print_r($errors);
@@ -39,6 +39,7 @@ while($row = $result->fetch_assoc()) {
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="verimail.js"></script>
   <script type="text/javascript" src="phonenumber.js"></script>
+	<link rel="stylesheet" href="form.css">
   
    <script>
   var array = ["2013-03-14","2016-11-30","2013-03-16"]
@@ -189,44 +190,33 @@ Filament Color:
 <div id="CustomInstructions" style="display:none;">
 	<table id="customizedInstructions">
 						<tr>
-							<th>
+							<th class="tooltip">
+								<span class="tooltiptext">Layer Height is how coarse or fine the vertical axis, 0.1 being the finest and 0.3 being the coarsest.</span>
 								Layer Height:
 							</th>
 							
-							<th>
+							<th class="tooltip">
+								<span class="tooltiptext">Shells are the exterior wall of a print, the higher the shells, the thicker the wall.</span>
 								Shells:
 							</th>
 							
-							<th>
+							<th class="tooltip">
+								<span class="tooltiptext">Infill is how much of the print inbetween the exterior walls is filled in.<br>100% is the highest, 10% is the lowest.</span>
 								Infill:
 							</th>
 						</tr>
 						
 						<tr>
 							<td>
-								<input type="number" id="layerHeight" step="0.1" max="0.3" min="0.1" style="text-align:center; width:100%;" placeholder="Layer Height (mm)">
+								<input class="instructionsInput" type="number" id="layerHeight" step="0.1" max="0.3" min="0.1" " placeholder="Layer Height (mm)">
 							</td>
 							
 							<td>
-								<input type="number" id="shells" step="1" max="30" min="1.00" style="text-align:center; width:100%;" placeholder="Number of Shells">
+								<input class="instructionsInput" type="number" id="shells" step="1" max="30" min="1.00" placeholder="Number of Shells">
 							</td>
 							
 							<td>
-								<input type="number" id="infill" step="10" max="100" min="10" style="text-align:center; width:100%;" placeholder="Infill (%)">
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<span>Layer Height is how coarse or fine the vertical axis,<br> .1 being the fines and .3 being the coarsest.</span>
-							</td>
-							
-							<td>
-								<span>Shells are the exterior wall of a print, the higher the shells, the thicker the wall.</span>
-							</td>
-							
-							<td>
-								<span>Infill is how much of the print inbetween the exterior walls is filled in.<br>100% is the highest, 10% is the lowest.</span>
+								<input class="instructionsInput"  type="number" id="infill" step="10" max="100" min="10" placeholder="Infill (%)">
 							</td>
 						</tr>
 					</table>
