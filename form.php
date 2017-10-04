@@ -57,6 +57,7 @@ require_once "functions/dbconnect.php";
 </head>
 <body>
   <form id="newRequest" action="" method="POST" enctype="multipart/form-data">
+		<div id="top">
 	<div id="aboutYou">
 		<h2>
 			About You
@@ -119,8 +120,8 @@ Number of Prints:
 Object Size:
 </br>
   <input type="radio" name="custom" id="original0">
-        Use Default Size in File:
-        
+        Use Default Size in File
+        <br>
         <input type="radio" name="custom" id="custom0">
         Specify Dimensions
         <div id='customDimensions' style='display:none'>
@@ -174,6 +175,7 @@ Filament Color:
 <select>
 	<?php include "colorEcho.php"?>
 </select>
+</div>
 </div>
 
 <div id="additionalNotes">
@@ -248,7 +250,16 @@ Filament Color:
 </div>
 
 <div id="agreement">
-	
+	<h4>
+		Payment and turnaround time:
+	</h4>
+	<?php
+	$query = "SELECT * FROM ContactPreference";
+	$result = $conn->query($query);
+	while($row = $result->fetch_assoc()) {
+										 echo "<input type='radio' name='contact' id='contact" . $row['ContactPreferenceID'] . "' value='" . $row['ContactPreferenceID'] . "'>" . $row['ContactDescription'] ."<br>";
+								 }
+	?>
 </div>
 	
 </br>
