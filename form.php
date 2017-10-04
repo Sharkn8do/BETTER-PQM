@@ -260,6 +260,10 @@ Filament Color:
 										 echo "<input type='radio' name='contact' id='contact" . $row['ContactPreferenceID'] . "' value='" . $row['ContactPreferenceID'] . "'>" . $row['ContactDescription'] ."<br>";
 								 }
 	?>
+	<h4>
+		Use Agreement:
+	</h4>
+	<input type="text" id="intellec"
 </div>
 	
 </br>
