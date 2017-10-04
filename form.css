@@ -1,3 +1,6 @@
+#newRequest{
+  width:800px;
+}
 .tooltip {
     position: relative;
     border-bottom: 1px dotted black;
@@ -39,14 +42,41 @@
   text-align:center; 
   width:150px;
 }
+#top {
+  position:absolute;
+  float:left;
+  width:700px;
+  margin-top:-325px;
+  margin-left:50px;
+}
+#aboutYou{
+  position:relative;
+  float:left;
+  width:300px;
+}
+#yourPrint {
+  position:relative;
+  float:right;
+  width:300px;
+  margin-left:25px;
+  text-align:center;
+}
 #aboutYou, #yourPrint, #additionalNotes, #agreement {
   border-width:2px;
   border-style:solid;
   border-color:black;
   border-radius:15px;
-  margin:1%;
-  padding:1%;
-  width:300px;
+  padding:2%;
+}
+#additionalNotes {
+  width:500px;
+  position:relative;
+  margin-top:350px;
+}
+#agreement {
+  position:relative;
+  width:500px;
+  margin-top:20px;
 }
 h2 {
   font-size: 18px;
@@ -63,7 +93,4 @@ h2 {
   width:125px;
   padding:5px;
   margin-left: 25px;
-}
-#additionalNotes {
-  width:500px;
 }
