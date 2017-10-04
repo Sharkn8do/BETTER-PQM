@@ -21,6 +21,9 @@ function drawAllRecords($con) {
 					//else, don't bother.  won't need to print it
 			if(!empty($printDet[3])){$dateNeeded = $printDet[3];}
 			
+			//user details array
+			$userDets = getUserDetails($con,$user_id);
+			
 			//getUserDetails to get contact details
 			//getPrintFormDetails to get quantity, color, customsize,custominstructions,forclass,originaldesign,clineuse
 			
@@ -58,7 +61,18 @@ function getPrintProperties($con,$printID) {
 
 //get the user's details for displaying
 function getUserDetails($con,$userID) {
-
+	$q = "SELECT * FROM `pqm`.`Users` WHERE `UserID` = '$userID'";
+	$result = mysqli_query($con,$q);
+	
+	while($row = mysqli_fetch_assoc($result)) {
+		$firstName = $row['FirstName'];
+		$lastName = $row['LastName'];
+		$userEmail = $row['Email'];
+		$userPhone = $row['PhoneNumber'];
+		$userAffiliation = $row['AffiliationID'];
+	}
+	$userDet = array("FirstName"=>$firstName, "LastName"=>$lastName, "Email"=>$userEmail, "Phone"=>$userPhone, "nauAffiliation"=>$userAffiliation);
+	return $userDet;
 }
 
 //get users print details entered via form
