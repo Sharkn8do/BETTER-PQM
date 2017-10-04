@@ -222,13 +222,60 @@ Filament Color:
 		<textarea id="comments" maxlength="1024" rows="4" cols="50"></textarea>
 	<br>
 	<em>Unless specified otherwise above, all 3D print requests will be printed at MakerBot's standard print settings <br> (10% infill, 200 micron/0.20mm resolution/layer height, 2 shells, with raft).</em>
+	<h4>
+		More about your print:
+	</h4>
+	Is this an original design?
+	<br>
+	<input type="radio" name="design" id="designYes"> Yes
+	<input type="radio" name="design" id="designNo"> No
+	<br>
+	Is this for a class?
+	<br>
+	<input type="radio" name="class" id="classYes"> Yes
+	<input type="radio" name="class" id="classNo"> No
+	
+	<div id="classDetails" style="display:none;">
+		Class Number:
+		<input id="classNumber" placeholder="Art 100, CEME 121, MAT 121" maxlength="10">
+		<br>
+		Class Title:
+		<input id="classTitle" placeholder="Intro to Mechanical Engineering" maxlength="50">
+		<br>
+		Class Insturctor:
+		<input id="classInstructor" placeholder="Dr. Knowital" maxlength="30">
+	</div>
+</div>
+
+<div id="agreement">
+	
 </div>
 	
 </br>
   <input type="submit"/>
  </form>
 
-
+<script>
+	$('#newRequest').change(function(){
+   if ($("input[id='designNo']:checked").val()) {
+   	var result = confirm("Is this file clear of logos, design copyrights, or other form of copyright infringments?");
+if (result) {
+    $("#designNo").prop("checked", true);
+} else {
+    $("#designNo").prop("checked", false);
+}
+  }
+});
+</script>
+<script>
+	$('#newRequest').change(function(){
+   if ($("input[id='classYes']:checked").val()) {
+    $('#classDetails').show();
+  } else {
+    $('#classDetails').hide();
+  }
+});
+</script>
 <script>
 	$('#instructions').change(function(){
   if($(this).prop("checked")) {

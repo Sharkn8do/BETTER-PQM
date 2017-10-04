@@ -39,7 +39,7 @@
   text-align:center; 
   width:150px;
 }
-#aboutYou, #yourPrint, #additionalNotes {
+#aboutYou, #yourPrint, #additionalNotes, #agreement {
   border-width:2px;
   border-style:solid;
   border-color:black;
