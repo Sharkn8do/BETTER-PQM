@@ -23,11 +23,10 @@ function drawAllRecords($con) {
 			
 			//user details array
 			$userDets = getUserDetails($con,$user_id);
-			
-			//getUserDetails to get contact details
 			//getPrintFormDetails to get quantity, color, customsize,custominstructions,forclass,originaldesign,clineuse
 			
-			//possibly split the custom instructions, size, color, and class into own functions to grab
+			//getPrintStaffDetails to get the weight,cost,print time, comments, and paid
+			$staffDets = (getPrintStaffDetails($con,$request_id));
 			
 		}
 }
@@ -78,7 +77,21 @@ function getPrintFormDetails($con,$printID) {
 
 //gets print details that staff enter
 function getPrintStaffDetails($con,$printID) {
-
+	$q = "SELECT * FROM `pqm`.`specifications` WHERE `RequestID` = '$printID'";
+	$result = mysqli_query($con,$q);
+	
+	while($row = mysqli_fetch_assoc($result)) {
+		$printWeight = $row['Weight'];
+		$printCost = $row['Cost'];
+		$printHours = $row['PrintHours'];
+		$printMinutes = $row['PrintMinutes'];
+		$comments = $row['Comments'];
+		$ICMPID = $row['ICMPID'];
+		$paidYN = $row['Paid'];
+	}
+	$staffDet = array("Weight" => $printWeight, "Cost" => $printCost, "Hours" => $printHours,
+		"Minutes" => $printMinutes, "Comments" => $comments, "ICMPID" => $ICMPID, "PaidStatus" => $paidYN);
+	return $staffDet;
 }
 
 
