@@ -11,15 +11,15 @@ function drawAllRecords($con) {
 			
 			//print details stored in variables
 			//REQUIRED
-			$request_id = $printDet[0];
-			$user_id = $printDet[1];
-			$reqDate = $printDet[2];
-			$contactPref = $printDet[4];
+			$request_id = $printDet["RequestID"];
+			$user_id = $printDet["UserID"];
+			$reqDate = $printDet["RequestDate"];
+			$contactPref = $printDet["ContactPreferenceID"];
 			
 			//OPTIONAL
 				//if date needed is not empty, assign it to the variable.
 					//else, don't bother.  won't need to print it
-			if(!empty($printDet[3])){$dateNeeded = $printDet[3];}
+			if(!empty($printDet["DateNeeded"])){$dateNeeded = $printDet["DateNeeded"];}
 			
 			//user details array
 			$userDets = getUserDetails($con,$user_id);
@@ -40,10 +40,6 @@ function drawAllRecords($con) {
 	2 - Date Requested
 	3 - Date Needed (still have to check if it's empty)
 	4 - Contact Preference
-	
-	TODO:
-		change to associative array 
-		https://www.w3schools.com/PhP/php_arrays.asp
 */
 function getPrintProperties($con,$printID) {
 	$q = "SELECT * FROM `pqm`.`Requests` WHERE `RequestID` = '$printID' AND `Authorized` = '1'";
@@ -55,7 +51,7 @@ function getPrintProperties($con,$printID) {
 		$dateNeed = $row['DateNeeded'];
 		$contactPref = $row['ContactPreferenceID'];
 	}
-	$printProp = array($request_id, $user_id, $reqDate, $dateNeed, $contactPref);
+	$printProp = array("RequestID" =>$request_id, "UserID"=>$user_id, "RequestDate" => $reqDate, "DateNeeded" => $dateNeed, "ContactPreferenceID" => $contactPref);
 	return $printProp;
 }
 
