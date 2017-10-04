@@ -13,8 +13,6 @@ function drawAllRecords($con) {
 			//REQUIRED
 			$request_id = $printDet["RequestID"];
 			$user_id = $printDet["UserID"];
-			$reqDate = $printDet["RequestDate"];
-			$contactPref = $printDet["ContactPreferenceID"];
 			
 			//OPTIONAL
 				//if date needed is not empty, assign it to the variable.
@@ -27,6 +25,8 @@ function drawAllRecords($con) {
 			
 			//getPrintStaffDetails to get the weight,cost,print time, comments, and paid
 			$staffDets = (getPrintStaffDetails($con,$request_id));
+			
+			echo $staffDets['Cost'];
 			
 		}
 }
@@ -72,7 +72,24 @@ function getUserDetails($con,$userID) {
 
 //get users print details entered via form
 function getPrintFormDetails($con,$printID) {
-
+	$q = "SELECT * FROM `pqm`.`3DFiles` WHERE `RequestID` = '$printID'";
+	$result = mysqli_query($con,$q);
+	
+	while($row = mysqli_fetch_assoc($result)) {
+		$fileID = $row['FileID'];
+		$fileName = $row['FileName'];
+		$quantity = $row['Quantity'];
+		$colorID = $row['ColorID'];
+		$customSizeBool = $row['CustomSize'];
+		$customInstrBool = $row['CustomInstructions'];
+		$forClassBool = $row['ForClass'];
+		$originalDesignBool = $row['OriginalDesign'];
+		$clineUseBool = $row['ClineUse'];
+	}
+	
+	if(empty($customInstrBool)){$customInstrReturn ='Standard';}
+	else {$customInstrReturn = getInstructions($con,$fileID);}
+	
 }
 
 //gets print details that staff enter
@@ -92,6 +109,19 @@ function getPrintStaffDetails($con,$printID) {
 	$staffDet = array("Weight" => $printWeight, "Cost" => $printCost, "Hours" => $printHours,
 		"Minutes" => $printMinutes, "Comments" => $comments, "ICMPID" => $ICMPID, "PaidStatus" => $paidYN);
 	return $staffDet;
+}
+
+function getInstructions($con,$fileID) {
+	$q = "SELECT * FROM `pqm`.`custominstructions` WHERE `FileID` = '$printID'";
+	$result = mysqli_query($con,$q);
+	
+	while($row = mysqli_fetch_assoc($result)) {
+		$layerHeight = $row['LayerHeight'];
+		$infillAmt = $row['Infill'];
+		$shellAmt = $row['Shells'];
+	}
+	$instructions = array("LayerHeight" => $layerHeight, "InfillAmount" => $infillAmt, "Shells" => $shellAmt);
+	return $instructions;
 }
 
 
