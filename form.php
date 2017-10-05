@@ -302,10 +302,10 @@ Filament Color:
 		<li>I will use the printed object(s) only for personal use, private study, scholarship, or research.</li>
 		<li>I will not use them for any commercial purpose or allow any third party to do so.</li>
 	</ul>
+  <input type="submit" id="submit" value="I Have Read These Terms and Conditions and Agree"/>
 </div>
 	
-<br>
-  <input type="submit"/>
+
  </form>
 
 <script>

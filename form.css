@@ -104,4 +104,20 @@ h2 {
   width:600px;
   background-color:lightgray;
   margin-left:75px;
+  padding:1%;
+  border-radius:15px;
+  margin-top:20px;
+}
+#submit {
+  display:block;
+  margin:0 auto;
+  height:3em;
+  font-size:1.5em;
+  border-radius:10px;
+  background-color:#003466;
+  color:#FFD200;
+}
+#submit:hover {
+  background-color:#FFD200;
+  color:#003466;
 }
