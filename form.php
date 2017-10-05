@@ -229,8 +229,8 @@ Filament Color:
 	</h4>
 	Is this an original design?
 	<br>
-	<input type="radio" name="design" id="designYes"> Yes
-	<input type="radio" name="design" id="designNo"> No
+	<input type="radio" name="design" id="designYes" class="design"> Yes
+	<input type="radio" name="design" id="designNo" class="design"> No
 	<br>
 	Is this for a class?
 	<br>
@@ -276,6 +276,7 @@ Filament Color:
 	</select>
 	I have read and agree to <a href="http://library.nau.edu/services/makerlab/makerlabpolicies.html">Cline Library's 3D printing policies</a> and certify that I have the intellectual property rights to authorize reproduction.
 	<br>
+	<br>
 	<select id="clinePictures">
 		<option>
 			Select One
@@ -302,14 +303,13 @@ Filament Color:
 		<li>I will use the printed object(s) only for personal use, private study, scholarship, or research.</li>
 		<li>I will not use them for any commercial purpose or allow any third party to do so.</li>
 	</ul>
-  <input type="submit" id="submit" value="I Have Read These Terms and Conditions and Agree"/>
+	<input type="submit" id="submit" value="I Have Read These Terms and Conditions and Agree"/>
 </div>
-	
 
  </form>
 
 <script>
-	$('#newRequest').change(function(){
+	$('.design').change(function(){
    if ($("input[id='designNo']:checked").val()) {
    	var result = confirm("Is this file clear of logos, design copyrights, or other form of copyright infringments?");
 if (result) {
