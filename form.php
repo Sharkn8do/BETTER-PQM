@@ -263,10 +263,48 @@ Filament Color:
 	<h4>
 		Use Agreement:
 	</h4>
-	<input type="text" id="intellec"
+	<select id="intellectualRights">
+		<option>
+			Select One
+		</option>
+		<option id="ir0">
+			No
+		</option>
+		<option id="ir0">
+			Yes
+		</option>
+	</select>
+	I have read and agree to <a href="http://library.nau.edu/services/makerlab/makerlabpolicies.html">Cline Library's 3D printing policies</a> and certify that I have the intellectual property rights to authorize reproduction.
+	<br>
+	<select id="clinePictures">
+		<option>
+			Select One
+		</option>
+		<option id="clinePics0">
+			No
+		</option>
+		<option id="clinePics0">
+			Yes
+		</option>
+	</select>
+	May we take photos of your object or archive the file for use in marketing, publications, or sharing with others?
+</div>
+
+<div class="copyrightnotice">
+	<h3>Notice concerning copyright and other intellectual property restrictions</h3>
+	<p>The copyright law of the United States (<a href="http://www.copyright.gov/title17/" target="_blank">Title 17, United States Code</a>) governs the making of photocopies or other reproductions of copyrighted material.</p>
+	<p>Under certain conditions specified in the law, libraries and archives are authorized to furnish a photocopy or other reproduction. One of these specific conditions is that the photocopy or reproduction is not to be "used for any purpose other than private study, scholarship, or research." If a user makes a request for, or later uses, a photocopy or reproduction for purposes in excess of "fair use," that user may be liable for copyright infringement. </p>
+	<p>This institution reserves the right to refuse to accept a copying order/scanning services if, in its judgment, fulfillment of the order would involve violation of copyright or other intellectual property laws.</p>
+	<p>By submitting this print request, I acknowledge, represent and warrant as follows:</p>
+	<ul>
+		<li>I have read, understand, and will comply with the copyright notice posted above. </li>
+		<li>This request complies with the <a href="/services/makerlab/makerlabpolicies.html">Cline Library MakerLab Use Policy</a> and all other applicable laws, regulations, and policies.</li>
+		<li>I will use the printed object(s) only for personal use, private study, scholarship, or research.</li>
+		<li>I will not use them for any commercial purpose or allow any third party to do so.</li>
+	</ul>
 </div>
 	
-</br>
+<br>
   <input type="submit"/>
  </form>
 

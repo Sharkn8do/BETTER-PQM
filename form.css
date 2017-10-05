@@ -76,11 +76,13 @@
   width:500px;
   position:relative;
   margin-top:350px;
+  margin-left:100px;
 }
 #agreement {
   position:relative;
   width:500px;
   margin-top:20px;
+  margin-left:100px;
 }
 h2 {
   font-size: 18px;
@@ -94,7 +96,12 @@ h2 {
   border-color:black;
   border-radius:10px;
   height:auto;
-  width:125px;
+  width:100px;
   padding:5px;
-  margin-left: 25px;
+  margin-left:15px;
+}
+.copyrightnotice {
+  width:600px;
+  background-color:lightgray;
+  margin-left:50px;
 }
